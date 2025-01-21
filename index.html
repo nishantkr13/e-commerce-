@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Storefront</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>E-Commerce Store</h1>
+    <nav>
+      <button id="all-btn">All Products</button>
+      <button id="category-btn">Category</button>
+      <input type="text" id="search-bar" placeholder="Search products...">
+    </nav>
+  </header>
+
+  <main>
+    <section id="filters">
+      <label for="price-range">Price Range:</label>
+      <input type="range" id="price-range" min="0" max="1000" step="10">
+      <span id="price-value">Max: $1000</span>
+    </section>
+
+    <section id="product-grid"></section>
+  </main>
+
+  <footer>
+    <p>© 2025 E-Commerce Storefront. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
