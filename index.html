@@ -11,7 +11,6 @@
     <h1>E-Commerce Store</h1>
     <nav>
       <button id="all-btn">All Products</button>
-      <button id="category-btn">Category</button>
       <input type="text" id="search-bar" placeholder="Search products...">
     </nav>
   </header>
@@ -21,16 +20,28 @@
       <label for="price-range">Price Range:</label>
       <input type="range" id="price-range" min="0" max="1000" step="10">
       <span id="price-value">Max: $1000</span>
-    </section>
-    <select id="category-select">
+      
+
+      <label for="category-select">Category:</label>
+      <select id="category-select">
         <option value="all">All Categories</option>
         <option value="Electronics">Electronics</option>
         <option value="Fashion">Fashion</option>
         <option value="Home">Home</option>
       </select>
+    
       
+      <label for="availability-select">Availability:</label>
+      <select id="availability-select">
+        <option value="all">All Products</option>
+        <option value="available">Available</option>
+        <option value="out-of-stock">Out of Stock</option>
+      </select>
+    </section>
 
-    <section id="product-grid"></section>
+    <section id="product-grid">
+      <!-- Product cards will be rendered here -->
+    </section>
   </main>
 
   <footer>

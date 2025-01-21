@@ -1,62 +1,67 @@
 // Mock product data
 const products = [
-    { id: 1, name: "Product 1", price: 200, category: "Electronics", img: "images/product1.jpg" },
-    { id: 2, name: "Product 2", price: 500, category: "Electronics", img: "images/product2.jpg" },
-    { id: 3, name: "Product 3", price: 100, category: "Home", img: "images/product3.jpg" },
-    { id: 4, name: "Product 4", price: 800, category: "Home", img: "images/product4.jpg" },
+    { id: 1, name: "Asas Bivobook ", price: 800, category: "Electronics", available: true, img: "images/product1.jpg" },
+    { id: 2, name: "Apul Aphone", price: 500, category: "Electronics", available: false, img: "images/product2.jpg" },
+    { id: 3, name: "Krizol Knife", price: 100, category: "Home", available: true, img: "images/product3.jpg" },
+    { id: 4, name: "Mon BookSelf", price: 200, category: "Home", available: true, img: "images/product4.jpg" },
   ];
   
-  // Cart
-  let cart = [];
-  
-  // Render Products
+  // Render products to the grid
   function renderProducts(filteredProducts = products) {
     const productGrid = document.getElementById("product-grid");
-    productGrid.innerHTML = "";
+    productGrid.innerHTML = ""; // Clear previous products
     filteredProducts.forEach(product => {
       productGrid.innerHTML += `
         <div class="product-card">
           <img src="${product.img}" alt="${product.name}">
           <h3>${product.name}</h3>
           <p>$${product.price}</p>
-          <button onclick="addToCart(${product.id})">Add to Cart</button>
+          <p>${product.available ? "In Stock" : "Out of Stock"}</p>
+          <button onclick="addToCart(${product.id})" ${!product.available ? 'disabled' : ''}>Add to Cart</button>
         </div>
       `;
     });
   }
   
-  // Add to Cart
+  // Add to Cart functionality
   function addToCart(productId) {
     const product = products.find(p => p.id === productId);
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
     alert(`${product.name} added to cart!`);
   }
   
-  // Filter by Price
-  document.getElementById("price-range").addEventListener("input", function () {
-    const maxPrice = this.value;
-    document.getElementById("price-value").textContent = `Max: $${maxPrice}`;
-    const filteredProducts = products.filter(product => product.price <= maxPrice);
+  // Filter products by Price, Category, and Availability
+  function filterProducts() {
+    const maxPrice = document.getElementById("price-range").value;
+    const selectedCategory = document.getElementById("category-select").value;
+    const selectedAvailability = document.getElementById("availability-select").value;
+  
+    const filteredProducts = products.filter(product => {
+      const isPriceValid = product.price <= maxPrice;
+      const isCategoryValid = selectedCategory === "all" || product.category === selectedCategory;
+      
+      let isAvailabilityValid = true;
+      if (selectedAvailability === "available") {
+        isAvailabilityValid = product.available;
+      } else if (selectedAvailability === "out-of-stock") {
+        isAvailabilityValid = !product.available;
+      }
+  
+      return isPriceValid && isCategoryValid && isAvailabilityValid;
+    });
+  
     renderProducts(filteredProducts);
-  });
+  }
   
-  // Filter by Category
-  document.getElementById("category-select").addEventListener("change", function () {
-    const selectedCategory = this.value;
-    if (selectedCategory === "all") {
-      renderProducts(); // Show all products
-    } else {
-      const filteredProducts = products.filter(product => product.category === selectedCategory);
-      renderProducts(filteredProducts); // Show filtered products
-    }
-  });
-  
-  // Show All Products
+  // Show all products
   document.getElementById("all-btn").addEventListener("click", () => {
     renderProducts(); // Display all products
   });
   
-  // Initial Render
+  // Filter event listeners
+  document.getElementById("price-range").addEventListener("input", filterProducts);
+  document.getElementById("category-select").addEventListener("change", filterProducts);
+  document.getElementById("availability-select").addEventListener("change", filterProducts);
+  
+  // Initial render of all products
   renderProducts();
   
