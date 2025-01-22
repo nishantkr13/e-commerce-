@@ -7,40 +7,41 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <header>
     <h1>E-Commerce Store</h1>
     <nav>
-      <button id="all-btn">All Products</button>
+      <button id="reset-filters">Reset Filters</button>
       <input type="text" id="search-bar" placeholder="Search products...">
+      <button id="cart-btn">My Cart</button>
+      
     </nav>
   </header>
 
   <main>
     <section id="filters">
-      <label for="price-range">Price Range:</label>
-      <input type="range" id="price-range" min="0" max="1000" step="10">
-      <span id="price-value">Max: $1000</span>
+        <label for="price-range">Price Range:</label>
+        <input type="range" id="price-range" min="0" max="1000" step="10">
+        <span id="price-value">Max: $1000</span>
       
-
-      <label for="category-select">Category:</label>
-      <select id="category-select">
-        <option value="all">All Categories</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Fashion">Fashion</option>
-        <option value="Home">Home</option>
-      </select>
-    
+        <label for="category-select">Category:</label>
+        <select id="category-select">
+          <option value="all">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home">Home</option>
+        </select>
       
-      <label for="availability-select">Availability:</label>
-      <select id="availability-select">
-        <option value="all">All Products</option>
-        <option value="available">Available</option>
-        <option value="out-of-stock">Out of Stock</option>
-      </select>
+        <label for="availability-select">Availability:</label>
+        <select id="availability-select">
+          <option value="all">All Products</option>
+          <option value="available">Available</option>
+          <option value="out-of-stock">Out of Stock</option>
+        </select>
     </section>
 
-    <section id="product-grid">
-      <!-- Product cards will be rendered here -->
+    <section id="product-grid" class="product-grid">
+      <!-- Products will be dynamically inserted here -->
     </section>
   </main>
 
