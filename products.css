@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -32,8 +32,7 @@ body {
   nav a:hover {
     background-color: #666;
   }
-  
-  /* Product Detail Container */
+ 
   .product-detail {
     display: flex;
     justify-content: center;
@@ -94,7 +93,6 @@ body {
     background-color: #218838;
   }
   
-  /* Responsive Design for Small Screens */
   @media (max-width: 768px) {
     .product-container {
       flex-direction: column;
@@ -110,7 +108,6 @@ body {
       text-align: center;
     }
   }
-  /* Product Description Section */
 .product-description {
     margin-top: 30px;
     padding: 20px;
